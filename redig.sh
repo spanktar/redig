@@ -7,7 +7,7 @@
 ## If you want to adjust things, you'll probably
 ## be interested in the echo part after "sh -c"
 
-tdbuf -oL redis-cli client list | \
+stdbuf -oL redis-cli client list | \
     sed 's/addr=\([\.0-9]*\).*/\1/' | \
     grep -v "127.0.0.1" | \
     xargs -I % sh -c 'echo -n "% "; dig -x % +short' | \
